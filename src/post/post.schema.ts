@@ -9,8 +9,23 @@ export class Post {
   title: string;
 
   @Prop({ required: true })
+  slug: string;
+
+  @Prop()
+  status: boolean;
+
+  @Prop({ required: true })
   content: string;
 
   @Prop({ required: true })
   author: string;
+
+  @Prop()
+  publishedAt: Date;
+
+  @Prop()
+  updatedAt: Date;
+
+  @Prop()
+  coverImage: string;
 }

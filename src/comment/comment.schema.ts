@@ -6,10 +6,10 @@ export type CommentDocument = Comment & Document;
 @Schema()
 export class Comment {
   @Prop({ required: true })
-  name: string;
+  content: string;
 
-  @Prop({ required: true })
-  description: string;
+  @Prop()
+  createdAt: Date;
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);
