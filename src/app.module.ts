@@ -11,7 +11,7 @@ import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_DB_URL!),
+    MongooseModule.forRoot(process.env.MONGODB_URI!),
     PostModule,
     UserModule,
     CategoryModule,
