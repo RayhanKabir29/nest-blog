@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post, PostDocument } from './post.schema';
 import { Model } from 'mongoose';
@@ -19,5 +19,13 @@ export class PostService {
 
   async findAll() {
     return this.postModel.find().exec();
+  }
+
+  async findOne(slug: string) {
+    const post = await this.postModel.findOne({ slug }).exec();
+    if (!post) {
+      throw new NotFoundException(`Post with slug "${slug}" not found`);
+    }
+    return post;
   }
 }
