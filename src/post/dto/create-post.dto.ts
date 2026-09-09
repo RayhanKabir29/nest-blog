@@ -6,7 +6,7 @@ export class CreatePostDto {
   title: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   slug: string;
 
   @IsBoolean()
