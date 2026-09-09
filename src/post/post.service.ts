@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post, PostDocument } from './post.schema';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { CreatePostDto } from './dto/create-post.dto';
 import slugify from 'slugify';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -40,5 +40,18 @@ export class PostService {
       throw new NotFoundException(`Post with slug "${slug}" not found`);
     }
     return post;
+  }
+
+  async remove (id: string) {
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+      throw new NotFoundException(`Post with id "${id}" not found`);
+    }
+    const post = await this.postModel.findByIdAndDelete(id).exec();
+    if (!post) {
+      throw new NotFoundException(`Post with id "${id}" not found`);
+    }
+    return {
+        message: `Post with id "${id}" has been deleted successfully`,
+    };
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get,Param,Patch,Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get,Param,Patch,Post } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -27,5 +27,10 @@ export class PostController {
   @Get(`:slug`)
   findOne(@Param('slug') slug: string) {
     return this.postService.findOne(slug);
+  }
+
+  @Delete(`:id`)
+  remove(@Param('id') id: string) {
+    return this.postService.remove(id);
   }
 }
