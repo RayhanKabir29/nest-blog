@@ -1,14 +1,14 @@
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type PostDocument = Post & Document;
 
-@Schema()
+@Schema({ timestamps: true,})
 export class Post {
-  @Prop({ required: true })
+  @Prop({ required: true, trim: true, })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true, trim: true })
   slug: string;
 
   @Prop()
@@ -21,11 +21,15 @@ export class Post {
   author: string;
 
   @Prop()
-  publishedAt: Date;
-
-  @Prop()
-  updatedAt: Date;
-
-  @Prop()
   coverImage: string;
+
+  @Prop()
+  tags: string[];
+
+  @Prop()
+  categories: string[];
+
+  @Prop()
+  excerpt: string;
 }
+export const PostSchema = SchemaFactory.createForClass(Post);
