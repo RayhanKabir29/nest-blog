@@ -5,10 +5,6 @@ export class CreatePostDto {
   @IsNotEmpty()
   title: string;
 
-  @IsString()
-  @IsOptional()
-  slug: string;
-
   @IsBoolean()
   @IsOptional()
   status?: boolean;
