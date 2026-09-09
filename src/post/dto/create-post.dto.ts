@@ -34,6 +34,6 @@ export class CreatePostDto {
   categories: string[];
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   author: string;
 }
