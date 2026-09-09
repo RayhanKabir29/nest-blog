@@ -31,5 +31,11 @@ export class Post {
 
   @Prop()
   excerpt: string;
+
+   @Prop({
+    default: false,
+  })
+  published: boolean;
 }
+
 export const PostSchema = SchemaFactory.createForClass(Post);
